@@ -4,45 +4,18 @@
 
 namespace MeneySample;
 
-public readonly record struct Money(ulong MajorUnits, ushort MinorUnits, ushort MinorUnitRatio, Currency Currency)
+public readonly record struct Money(ulong TotalMinorUnits, Currency Currency)
 {
-  public static Money UnitedStatesDollar(ulong dollars, ushort cents)
-  {
-    if (cents > 99)
-    {
-      throw new Exception($"Cent amount {cents} too large");
-    }
+  private const ulong MinorUnitRatio = 100UL;
 
-    return new Money(MajorUnits: dollars, MinorUnits: cents, MinorUnitRatio: 100, Currency: Currency.UnitedStatesDollar);
-  }
+  public ulong MajorUnits => TotalMinorUnits / Money.MinorUnitRatio;
+  public ulong MinorUnits => TotalMinorUnits % Money.MinorUnitRatio;
+  public decimal TotalMajorUnits => (decimal)TotalMinorUnits / MinorUnitRatio;
 
-  public static Money Euro(ulong euros, ushort cents)
-  {
-    if (cents > 99)
-    {
-      throw new Exception($"Cent amount {cents} too large");
-    }
+  public override string ToString() => $"{MajorUnits}.{MinorUnits} {Currency}";
 
-    return new Money(MajorUnits: euros, MinorUnits: cents, MinorUnitRatio: 100, Currency: Currency.Euro);
-  }
-
-  public static Money BelarusianRouble(ulong roubles, ushort kopecks)
-  {
-    if (kopecks > 99)
-    {
-      throw new Exception($"Kopeck amount {kopecks} too large");
-    }
-
-    return new Money(MajorUnits: roubles, MinorUnits: kopecks, MinorUnitRatio: 100, Currency: Currency.BelarusianRouble);
-  }
-
-  public static Money RussianRouble(ulong roubles, ushort kopecks)
-  {
-    if (kopecks > 99)
-    {
-      throw new Exception($"Kopeck amount {kopecks} too large");
-    }
-
-    return new Money(MajorUnits: roubles, MinorUnits: kopecks, MinorUnitRatio: 100, Currency: Currency.RussianRouble);
-  }
+  public static Money UnitedStatesDollar(ushort cents) => new(TotalMinorUnits: cents, Currency: Currency.UnitedStatesDollar);
+  public static Money Euro(ushort cents) => new(TotalMinorUnits: cents, Currency: Currency.Euro);
+  public static Money BelarusianRouble(ushort kopecks) => new(TotalMinorUnits: kopecks, Currency: Currency.BelarusianRouble);
+  public static Money RussianRouble(ushort kopecks) => new(TotalMinorUnits: kopecks, Currency: Currency.RussianRouble);
 }
