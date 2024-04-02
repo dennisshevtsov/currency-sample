@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace MeneySample;
 
 public readonly struct Currency
@@ -10,6 +12,18 @@ public readonly struct Currency
   private string Code { get; }
 
   public override string ToString() => Code;
+
+  public override bool Equals([NotNullWhen(true)] object? obj)
+  {
+    if (obj is not Currency currency)
+    {
+      throw new InvalidOperationException("Invalid type of object to compare to currency");
+    }
+
+    return Code == currency.Code;
+  }
+
+  public override int GetHashCode() => Code.GetHashCode();
 
   public static bool operator ==(Currency a, Currency b) => a.Code == b.Code;
   public static bool operator !=(Currency a, Currency b) => a.Code == b.Code;
