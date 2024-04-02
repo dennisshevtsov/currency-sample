@@ -2,20 +2,57 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace MeneySample;
 
-public readonly record struct Money(ulong TotalMinorUnits, Currency Currency)
+public readonly struct Money
 {
   private const ulong MinorUnitRatio = 100UL;
 
-  public ulong MajorUnits => TotalMinorUnits / Money.MinorUnitRatio;
-  public ulong MinorUnits => TotalMinorUnits % Money.MinorUnitRatio;
-  public decimal TotalMajorUnits => (decimal)TotalMinorUnits / MinorUnitRatio;
+  private Money(Currency currency, ulong totalMinorUnits) => (Currency, TotalMinorUnits) = (currency, totalMinorUnits);
+
+  private Currency Currency { get; }
+  private ulong TotalMinorUnits { get; }
+
+  private ulong MajorUnits => TotalMinorUnits / Money.MinorUnitRatio;
+  private ulong MinorUnits => TotalMinorUnits % Money.MinorUnitRatio;
 
   public override string ToString() => $"{MajorUnits}.{MinorUnits} {Currency}";
 
-  public static Money UnitedStatesDollar(ushort cents) => new(TotalMinorUnits: cents, Currency: Currency.UnitedStatesDollar);
-  public static Money Euro(ushort cents) => new(TotalMinorUnits: cents, Currency: Currency.Euro);
-  public static Money BelarusianRouble(ushort kopecks) => new(TotalMinorUnits: kopecks, Currency: Currency.BelarusianRouble);
-  public static Money RussianRouble(ushort kopecks) => new(TotalMinorUnits: kopecks, Currency: Currency.RussianRouble);
+  public override bool Equals([NotNullWhen(true)] object? obj)
+  {
+    if (obj is not Money money)
+    {
+      throw new InvalidOperationException("Invalid type of object to compare money");
+    }
+
+    return TotalMinorUnits == money.TotalMinorUnits;
+  }
+
+  public override int GetHashCode() => TotalMinorUnits.GetHashCode();
+
+  public static bool operator <(Money a, Money b)
+  {
+    if (a.Currency != b.Currency)
+    {
+      throw new InvalidOperationException("Same currency required to compare money");
+    }
+
+    return a.TotalMinorUnits < b.TotalMinorUnits;
+  }
+  public static bool operator >(Money a, Money b) => a.TotalMinorUnits > b.TotalMinorUnits;
+
+  public static bool operator <=(Money a, Money b) => a.TotalMinorUnits <= b.TotalMinorUnits;
+  public static bool operator >=(Money a, Money b) => a.TotalMinorUnits >= b.TotalMinorUnits;
+
+  public static bool operator ==(Money a, Money b) => a.TotalMinorUnits == b.TotalMinorUnits;
+  public static bool operator !=(Money a, Money b) => a.TotalMinorUnits != b.TotalMinorUnits;
+
+  public static Money None { get; }
+
+  public static Money UnitedStatesDollar(ushort cents) => new(currency: Currency.UnitedStatesDollar, totalMinorUnits: cents);
+  public static Money Euro(ushort cents)               => new(currency: Currency.Euro, totalMinorUnits: cents);
+  public static Money BelarusianRouble(ushort kopecks) => new(currency: Currency.BelarusianRouble, totalMinorUnits: kopecks);
+  public static Money RussianRouble(ushort kopecks)    => new(currency: Currency.RussianRouble, totalMinorUnits: kopecks);
 }
