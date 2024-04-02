@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace MeneySample;
 
 public readonly struct Money
@@ -17,6 +19,35 @@ public readonly struct Money
   private ulong MinorUnits => TotalMinorUnits % Money.MinorUnitRatio;
 
   public override string ToString() => $"{MajorUnits}.{MinorUnits} {Currency}";
+
+  public override bool Equals([NotNullWhen(true)] object? obj)
+  {
+    if (obj is not Money money)
+    {
+      throw new InvalidOperationException("Invalid type of object to compare money");
+    }
+
+    return TotalMinorUnits == money.TotalMinorUnits;
+  }
+
+  public override int GetHashCode() => TotalMinorUnits.GetHashCode();
+
+  public static bool operator <(Money a, Money b)
+  {
+    if (a.Currency != b.Currency)
+    {
+      throw new InvalidOperationException("Same currency required to compare money");
+    }
+
+    return a.TotalMinorUnits < b.TotalMinorUnits;
+  }
+  public static bool operator >(Money a, Money b) => a.TotalMinorUnits > b.TotalMinorUnits;
+
+  public static bool operator <=(Money a, Money b) => a.TotalMinorUnits <= b.TotalMinorUnits;
+  public static bool operator >=(Money a, Money b) => a.TotalMinorUnits >= b.TotalMinorUnits;
+
+  public static bool operator ==(Money a, Money b) => a.TotalMinorUnits == b.TotalMinorUnits;
+  public static bool operator !=(Money a, Money b) => a.TotalMinorUnits != b.TotalMinorUnits;
 
   public static Money None { get; }
 
