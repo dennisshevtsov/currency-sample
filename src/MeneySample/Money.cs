@@ -30,7 +30,7 @@ public readonly struct Money
     return TotalMinorUnits == money.TotalMinorUnits;
   }
 
-  public override int GetHashCode() => TotalMinorUnits.GetHashCode();
+  public override int GetHashCode() => HashCode.Combine(TotalMinorUnits, Currency);
 
   public static bool operator <(Money a, Money b)
   {
