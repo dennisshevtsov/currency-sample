@@ -177,4 +177,60 @@ public sealed class CurrencyTest
     // Assert
     Assert.IsFalse(result);
   }
+
+  [TestMethod]
+  public void Equals_RussianRoubleAndUnitedStatesDollar_FalseReturned()
+  {
+    // Arrange
+    Currency rouble = Currency.RussianRouble;
+    Currency dollar = Currency.UnitedStatesDollar;
+
+    // Act
+    bool result = rouble.Equals(dollar);
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void Equals_RussianRoubleAndUnitedStatesEuro_FalseReturned()
+  {
+    // Arrange
+    Currency rouble = Currency.RussianRouble;
+    Currency euro   = Currency.Euro;
+
+    // Act
+    bool result = rouble.Equals(euro);
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void Equals_RussianRoubleAndBelarusianRouble_FalseReturned()
+  {
+    // Arrange
+    Currency belarusianRouble = Currency.RussianRouble;
+    Currency russianRouble    = Currency.BelarusianRouble;
+
+    // Act
+    bool result = belarusianRouble.Equals(russianRouble);
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void Equals_RussianRoubleAndRussianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency rouble1 = Currency.RussianRouble;
+    Currency rouble2 = Currency.RussianRouble;
+
+    // Act
+    bool result = rouble1.Equals(rouble2);
+
+    // Assert
+    Assert.IsTrue(result);
+  }
 }
