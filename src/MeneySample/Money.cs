@@ -24,7 +24,7 @@ public readonly struct Money
   {
     if (obj is not Money money)
     {
-      throw new InvalidOperationException("Invalid type of object to compare money");
+      throw new InvalidOperationException("Invalid type of object to compare to money");
     }
 
     return TotalMinorUnits == money.TotalMinorUnits;

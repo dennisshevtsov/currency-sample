@@ -26,7 +26,7 @@ public readonly struct Currency
   public override int GetHashCode() => Code.GetHashCode();
 
   public static bool operator ==(Currency a, Currency b) => a.Code == b.Code;
-  public static bool operator !=(Currency a, Currency b) => a.Code == b.Code;
+  public static bool operator !=(Currency a, Currency b) => a.Code != b.Code;
 
   public static readonly Currency None;
   public static readonly Currency UnitedStatesDollar = new(code: "USD");
