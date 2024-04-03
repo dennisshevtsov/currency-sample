@@ -11,6 +11,20 @@ namespace MoneySample.Test;
 public sealed class CurrencyTest
 {
   [TestMethod]
+  public void Equals_UnitedStatesDollarAndObject_ExceptionThrown()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    object      obj = new();
+
+    // Act
+    Action action = () => dollar.Equals(obj);
+
+    // Assert
+    Assert.ThrowsException<InvalidOperationException>(action);
+  }
+
+  [TestMethod]
   public void Equals_UnitedStatesDollarAndUnitedStatesDollar_TrueReturned()
   {
     // Arrange
