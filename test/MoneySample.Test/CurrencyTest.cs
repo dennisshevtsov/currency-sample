@@ -22,4 +22,46 @@ public sealed class CurrencyTest
     // Assert
     Assert.IsTrue(result);
   }
+
+  [TestMethod]
+  public void Equals_UnitedStatesDollarAndEuro_FalseReturned()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    Currency euro   = Currency.Euro;
+
+    // Act
+    bool result = dollar.Equals(euro);
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void Equals_UnitedStatesBelarusianRouble_FalseReturned()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    Currency rouble = Currency.BelarusianRouble;
+
+    // Act
+    bool result = dollar.Equals(rouble);
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void Equals_UnitedStatesDollarAndRussianRouble_FalseReturned()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    Currency rouble = Currency.RussianRouble;
+
+    // Act
+    bool result = dollar.Equals(rouble);
+
+    // Assert
+    Assert.IsFalse(result);
+  }
 }
