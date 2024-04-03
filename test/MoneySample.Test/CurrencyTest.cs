@@ -457,4 +457,228 @@ public sealed class CurrencyTest
     // Assert
     Assert.IsTrue(result);
   }
+
+  [TestMethod]
+  public void NotEqualOperator_UnitedStatesDollarAndUnitedStatesDollar_FalseReturned()
+  {
+    // Arrange
+    Currency dollar1 = Currency.UnitedStatesDollar;
+    Currency dollar2 = Currency.UnitedStatesDollar;
+
+    // Act
+    bool result = dollar1 != dollar2;
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_UnitedStatesDollarAndEuro_TrueReturned()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    Currency euro = Currency.Euro;
+
+    // Act
+    bool result = dollar != euro;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_UnitedStatesBelarusianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    Currency rouble = Currency.BelarusianRouble;
+
+    // Act
+    bool result = dollar != rouble;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_UnitedStatesDollarAndRussianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency dollar = Currency.UnitedStatesDollar;
+    Currency rouble = Currency.RussianRouble;
+
+    // Act
+    bool result = dollar != rouble;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_EuroAndUnitedStatesDollar_TrueReturned()
+  {
+    // Arrange
+    Currency euro = Currency.Euro;
+    Currency dollar = Currency.UnitedStatesDollar;
+
+    // Act
+    bool result = euro != dollar;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_EuroAndUnitedStatesEuro_FalseReturned()
+  {
+    // Arrange
+    Currency euro1 = Currency.Euro;
+    Currency euro2 = Currency.Euro;
+
+    // Act
+    bool result = euro1 != euro2;
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_EuroAndBelarusianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency euro = Currency.Euro;
+    Currency rouble = Currency.BelarusianRouble;
+
+    // Act
+    bool result = euro != rouble;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_EuroAndRussianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency euro = Currency.Euro;
+    Currency rouble = Currency.RussianRouble;
+
+    // Act
+    bool result = euro != rouble;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_BelarusianRoubleAndUnitedStatesDollar_TrueReturned()
+  {
+    // Arrange
+    Currency rouble = Currency.BelarusianRouble;
+    Currency dollar = Currency.UnitedStatesDollar;
+
+    // Act
+    bool result = rouble != dollar;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_BelarusianRoubleAndUnitedStatesEuro_TrueReturned()
+  {
+    // Arrange
+    Currency rouble = Currency.BelarusianRouble;
+    Currency euro = Currency.Euro;
+
+    // Act
+    bool result = rouble != euro;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_BelarusianRoubleAndBelarusianRouble_FalseReturned()
+  {
+    // Arrange
+    Currency rouble1 = Currency.BelarusianRouble;
+    Currency rouble2 = Currency.BelarusianRouble;
+
+    // Act
+    bool result = rouble1 != rouble2;
+
+    // Assert
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_BelarusianRoubleAndRussianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency belarusianRouble = Currency.BelarusianRouble;
+    Currency roussianRouble = Currency.RussianRouble;
+
+    // Act
+    bool result = belarusianRouble != roussianRouble;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_RussianRoubleAndUnitedStatesDollar_TrueReturned()
+  {
+    // Arrange
+    Currency rouble = Currency.RussianRouble;
+    Currency dollar = Currency.UnitedStatesDollar;
+
+    // Act
+    bool result = rouble != dollar;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_RussianRoubleAndUnitedStatesEuro_TrueReturned()
+  {
+    // Arrange
+    Currency rouble = Currency.RussianRouble;
+    Currency euro = Currency.Euro;
+
+    // Act
+    bool result = rouble != euro;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_RussianRoubleAndBelarusianRouble_TrueReturned()
+  {
+    // Arrange
+    Currency belarusianRouble = Currency.RussianRouble;
+    Currency russianRouble = Currency.BelarusianRouble;
+
+    // Act
+    bool result = belarusianRouble != russianRouble;
+
+    // Assert
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void NotEqualOperator_RussianRoubleAndRussianRouble_FalseReturned()
+  {
+    // Arrange
+    Currency rouble1 = Currency.RussianRouble;
+    Currency rouble2 = Currency.RussianRouble;
+
+    // Act
+    bool result = rouble1 != rouble2;
+
+    // Assert
+    Assert.IsFalse(result);
+  }
 }
