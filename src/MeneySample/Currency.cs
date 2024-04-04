@@ -6,12 +6,14 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MeneySample;
 
-public readonly struct Currency
+public readonly struct Currency : IEquatable<Currency>
 {
   private Currency(string code) => Code = code;
   private string Code { get; }
 
   public override string ToString() => Code;
+
+  public bool Equals(Currency other) => Code == other.Code;
 
   public override bool Equals([NotNullWhen(true)] object? obj)
   {
@@ -20,13 +22,13 @@ public readonly struct Currency
       throw new InvalidOperationException("Invalid type of object to compare to currency");
     }
 
-    return Code == currency.Code;
+    return Equals(currency);
   }
 
   public override int GetHashCode() => Code.GetHashCode();
 
-  public static bool operator ==(Currency a, Currency b) => a.Code == b.Code;
-  public static bool operator !=(Currency a, Currency b) => a.Code != b.Code;
+  public static bool operator ==(Currency a, Currency b) => a.Equals(b);
+  public static bool operator !=(Currency a, Currency b) => !a.Equals(b);
 
   public static readonly Currency None;
   public static readonly Currency UnitedStatesDollar = new(code: "USD");
