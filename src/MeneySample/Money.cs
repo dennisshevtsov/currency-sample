@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MeneySample;
 
-public readonly struct Money
+public readonly struct Money : IComparable<Money>
 {
   private const ulong MinorUnitRatio = 100UL;
 
@@ -27,27 +27,39 @@ public readonly struct Money
       throw new InvalidOperationException("Invalid type of object to compare to money");
     }
 
-    return TotalMinorUnits == money.TotalMinorUnits;
+    return CompareTo(money) == 0;
   }
 
   public override int GetHashCode() => HashCode.Combine(TotalMinorUnits, Currency);
 
-  public static bool operator <(Money a, Money b)
+  public int CompareTo(Money other)
   {
-    if (a.Currency != b.Currency)
+    if (Currency != other.Currency)
     {
       throw new InvalidOperationException("Same currency required to compare money");
     }
 
-    return a.TotalMinorUnits < b.TotalMinorUnits;
+    if (TotalMinorUnits == other.TotalMinorUnits)
+    {
+      return 0;
+    }
+
+    if (TotalMinorUnits > other.TotalMinorUnits)
+    {
+      return 1;
+    }
+
+    return -1;
   }
-  public static bool operator >(Money a, Money b) => a.TotalMinorUnits > b.TotalMinorUnits;
 
-  public static bool operator <=(Money a, Money b) => a.TotalMinorUnits <= b.TotalMinorUnits;
-  public static bool operator >=(Money a, Money b) => a.TotalMinorUnits >= b.TotalMinorUnits;
+  public static bool operator <(Money a, Money b) => a.CompareTo(b) < 0;
+  public static bool operator >(Money a, Money b) => a.CompareTo(b) > 0;
 
-  public static bool operator ==(Money a, Money b) => a.TotalMinorUnits == b.TotalMinorUnits;
-  public static bool operator !=(Money a, Money b) => a.TotalMinorUnits != b.TotalMinorUnits;
+  public static bool operator <=(Money a, Money b) => a.CompareTo(b) <= 0;
+  public static bool operator >=(Money a, Money b) => a.CompareTo(b) >= 0;
+
+  public static bool operator ==(Money a, Money b) => a.CompareTo(b) == 0;
+  public static bool operator !=(Money a, Money b) => a.CompareTo(b) != 0;
 
   public static Money None { get; }
 
