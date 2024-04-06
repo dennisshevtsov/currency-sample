@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MeneySample;
 
-public readonly struct Money : IComparable<Money>
+public readonly struct Money : IComparable<Money>, IEquatable<Money>
 {
   private const ulong MinorUnitRatio = 100UL;
 
@@ -29,6 +29,8 @@ public readonly struct Money : IComparable<Money>
 
     return CompareTo(money) == 0;
   }
+
+  public bool Equals(Money other) => CompareTo(other) == 0;
 
   public override int GetHashCode() => HashCode.Combine(TotalMinorUnits, Currency);
 
@@ -64,7 +66,7 @@ public readonly struct Money : IComparable<Money>
   public static Money None { get; }
 
   public static Money UnitedStatesDollar(ushort cents) => new(currency: Currency.UnitedStatesDollar, totalMinorUnits: cents);
-  public static Money Euro(ushort cents)               => new(currency: Currency.Euro, totalMinorUnits: cents);
-  public static Money BelarusianRouble(ushort kopecks) => new(currency: Currency.BelarusianRouble, totalMinorUnits: kopecks);
-  public static Money RussianRouble(ushort kopecks)    => new(currency: Currency.RussianRouble, totalMinorUnits: kopecks);
+  public static Money Euro(ushort cents)               => new(currency: Currency.Euro              , totalMinorUnits: cents);
+  public static Money BelarusianRouble(ushort kopecks) => new(currency: Currency.BelarusianRouble  , totalMinorUnits: kopecks);
+  public static Money RussianRouble(ushort kopecks)    => new(currency: Currency.RussianRouble     , totalMinorUnits: kopecks);
 }
