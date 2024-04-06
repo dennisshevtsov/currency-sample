@@ -7,7 +7,6 @@ using MeneySample;
 namespace MoneySample.Test;
 
 [TestClass]
-
 public sealed class CurrencyTest
 {
   [TestMethod]
