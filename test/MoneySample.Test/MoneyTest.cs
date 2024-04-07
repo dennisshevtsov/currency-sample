@@ -104,4 +104,60 @@ public sealed class MoneyTest
     // Arrange
     Assert.ThrowsException<InvalidOperationException>(action);
   }
+
+  [TestMethod]
+  public void CompareTo_SameMoney_0Returned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    int result = money1.CompareTo(money2);
+
+    // Arrange
+    Assert.AreEqual(0, result);
+  }
+
+  [TestMethod]
+  public void CompareTo_GreaterMoneyAndLesserMoney_1Returned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 2000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    int result = money1.CompareTo(money2);
+
+    // Arrange
+    Assert.AreEqual(1, result);
+  }
+
+  [TestMethod]
+  public void CompareTo_LesserMoneyAndGreaterMoney_Minus1Returned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 2000UL);
+
+    // Act
+    int result = money1.CompareTo(money2);
+
+    // Arrange
+    Assert.AreEqual(-1, result);
+  }
+
+  [TestMethod]
+  public void CompareTo_UnitedStatesDollarsAndEuro_ExceptionThrown()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.Euro(cents: 2000UL);
+
+    // Act
+    Action action = () => money1.CompareTo(money2);
+
+    // Arrange
+    Assert.ThrowsException<InvalidOperationException>(action);
+  }
 }
