@@ -160,4 +160,18 @@ public sealed class MoneyTest
     // Arrange
     Assert.ThrowsException<InvalidOperationException>(action);
   }
+
+  [TestMethod]
+  public void OperatorLess_DifferentCurrencies_ExceptionThrown()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.Euro(cents: 2000UL);
+
+    // Act
+    Func<object> action = () => money1 < money2;
+
+    // Arrange
+    Assert.ThrowsException<InvalidOperationException>(action);
+  }
 }
