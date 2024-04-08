@@ -162,7 +162,7 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
-  public void OperatorLess_DifferentCurrencies_ExceptionThrown()
+  public void OperatorLesser_DifferentCurrencies_ExceptionThrown()
   {
     // Arrange
     Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
@@ -176,7 +176,7 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
-  public void OperatorLess_SmallerAndGreater_TrueReturned()
+  public void OperatorLesser_LesserAndGreater_TrueReturned()
   {
     // Arrange
     Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
@@ -190,7 +190,7 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
-  public void OperatorLess_GreaterAndSmaller_FalseReturned()
+  public void OperatorLesser_GreaterAndLesser_FalseReturned()
   {
     // Arrange
     Money money1 = Money.UnitedStatesDollar(cents: 2000UL);
@@ -204,7 +204,7 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
-  public void OperatorLess_SameAmount_FalseReturned()
+  public void OperatorLesser_SameAmount_FalseReturned()
   {
     // Arrange
     Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
@@ -212,6 +212,62 @@ public sealed class MoneyTest
 
     // Act
     bool result = money1 < money2;
+
+    // Arrange
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void OperatorGreat_DifferentCurrencies_ExceptionThrown()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.Euro(cents: 2000UL);
+
+    // Act
+    Func<object> action = () => money1 > money2;
+
+    // Arrange
+    Assert.ThrowsException<InvalidOperationException>(action);
+  }
+
+  [TestMethod]
+  public void OperatorGreat_LesserAndGreater_FalseReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 2000UL);
+
+    // Act
+    bool result = money1 > money2;
+
+    // Arrange
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void OperatorGreat_GreaterAndLesser_TrueReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 2000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    bool result = money1 > money2;
+
+    // Arrange
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void OperatorGreat_SameAmount_FalseReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    bool result = money1 > money2;
 
     // Arrange
     Assert.IsFalse(result);
