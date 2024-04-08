@@ -174,4 +174,46 @@ public sealed class MoneyTest
     // Arrange
     Assert.ThrowsException<InvalidOperationException>(action);
   }
+
+  [TestMethod]
+  public void OperatorLess_SmallerAndGreater_TrueReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 2000UL);
+
+    // Act
+    bool result = money1 < money2;
+
+    // Arrange
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void OperatorLess_GreaterAndSmaller_FalseReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 2000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    bool result = money1 < money2;
+
+    // Arrange
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void OperatorLess_SameAmount_FalseReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    bool result = money1 < money2;
+
+    // Arrange
+    Assert.IsFalse(result);
+  }
 }
