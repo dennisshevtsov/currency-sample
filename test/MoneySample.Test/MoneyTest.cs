@@ -36,7 +36,7 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
-  public void Equals_ObjectWithPackedDifferentMoney_TrueReturned()
+  public void Equals_ObjectWithPackedDifferentMoney_FalseReturned()
   {
     // Arrange
     Money  money1 = Money.UnitedStatesDollar(cents: 1000UL);
@@ -78,7 +78,7 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
-  public void Equals_DifferentMoney_TrueReturned()
+  public void Equals_DifferentMoney_FalseReturned()
   {
     // Arrange
     Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
@@ -383,5 +383,89 @@ public sealed class MoneyTest
 
     // Arrange
     Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void OperatorEqual_SameAmount_TrueReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    bool result = money1 == money2;
+
+    // Arrange
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void OperatorEqual_DifferentAmount_FalseReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 2000UL);
+
+    // Act
+    bool result = money1 == money2;
+
+    // Arrange
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void OperatorEqual_DifferentCurrencies_ExceptionThrown()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.Euro(cents: 2000UL);
+
+    // Act
+    Func<object> action = () => money1 == money2;
+
+    // Arrange
+    Assert.ThrowsException<InvalidOperationException>(action);
+  }
+
+  [TestMethod]
+  public void OperatorNotEqual_SameAmount_FalseReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 1000UL);
+
+    // Act
+    bool result = money1 != money2;
+
+    // Arrange
+    Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void OperatorNotEqual_DifferentAmount_TrueReturned()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.UnitedStatesDollar(cents: 2000UL);
+
+    // Act
+    bool result = money1 != money2;
+
+    // Arrange
+    Assert.IsTrue(result);
+  }
+
+  [TestMethod]
+  public void OperatorNotEqual_DifferentCurrencies_ExceptionThrown()
+  {
+    // Arrange
+    Money money1 = Money.UnitedStatesDollar(cents: 1000UL);
+    Money money2 = Money.Euro(cents: 2000UL);
+
+    // Act
+    Func<object> action = () => money1 != money2;
+
+    // Arrange
+    Assert.ThrowsException<InvalidOperationException>(action);
   }
 }
