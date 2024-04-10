@@ -4,7 +4,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace MeneySample;
+namespace MoneySample;
 
 public readonly struct Currency : IEquatable<Currency>
 {
