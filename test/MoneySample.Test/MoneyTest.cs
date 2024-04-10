@@ -17,7 +17,7 @@ public sealed class MoneyTest
     // Act
     Action action = () => money.Equals(notMoney);
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -31,7 +31,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1.Equals(money2);
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -45,7 +45,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1.Equals(money2);
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -59,7 +59,7 @@ public sealed class MoneyTest
     // Act
     Action action = () => money1.Equals(money2);
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -73,7 +73,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1.Equals(money2);
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -87,7 +87,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1.Equals(money2);
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -101,7 +101,7 @@ public sealed class MoneyTest
     // Act
     Action action = () => money1.Equals(money2);
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -115,7 +115,7 @@ public sealed class MoneyTest
     // Act
     int result = money1.CompareTo(money2);
 
-    // Arrange
+    // Assert
     Assert.AreEqual(0, result);
   }
 
@@ -129,7 +129,7 @@ public sealed class MoneyTest
     // Act
     int result = money1.CompareTo(money2);
 
-    // Arrange
+    // Assert
     Assert.AreEqual(1, result);
   }
 
@@ -143,7 +143,7 @@ public sealed class MoneyTest
     // Act
     int result = money1.CompareTo(money2);
 
-    // Arrange
+    // Assert
     Assert.AreEqual(-1, result);
   }
 
@@ -157,7 +157,7 @@ public sealed class MoneyTest
     // Act
     Action action = () => money1.CompareTo(money2);
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -171,7 +171,7 @@ public sealed class MoneyTest
     // Act
     Func<object> action = () => money1 < money2;
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -185,7 +185,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 < money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -199,7 +199,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 < money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -213,7 +213,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 < money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -227,7 +227,7 @@ public sealed class MoneyTest
     // Act
     Func<object> action = () => money1 > money2;
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -241,7 +241,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 > money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -255,7 +255,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 > money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -269,7 +269,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 > money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -283,7 +283,7 @@ public sealed class MoneyTest
     // Act
     Func<object> action = () => money1 <= money2;
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -297,7 +297,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 <= money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -311,7 +311,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 <= money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -325,7 +325,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 <= money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -339,7 +339,7 @@ public sealed class MoneyTest
     // Act
     Func<object> action = () => money1 >= money2;
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -353,7 +353,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 >= money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -367,7 +367,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 >= money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -381,7 +381,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 >= money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -395,7 +395,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 == money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -409,7 +409,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 == money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -423,7 +423,7 @@ public sealed class MoneyTest
     // Act
     Func<object> action = () => money1 == money2;
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
   }
 
@@ -437,7 +437,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 != money2;
 
-    // Arrange
+    // Assert
     Assert.IsFalse(result);
   }
 
@@ -451,7 +451,7 @@ public sealed class MoneyTest
     // Act
     bool result = money1 != money2;
 
-    // Arrange
+    // Assert
     Assert.IsTrue(result);
   }
 
@@ -465,7 +465,59 @@ public sealed class MoneyTest
     // Act
     Func<object> action = () => money1 != money2;
 
-    // Arrange
+    // Assert
     Assert.ThrowsException<InvalidOperationException>(action);
+  }
+
+  [TestMethod]
+  public void ToString_UnitedStatesDollars_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.UnitedStatesDollar(cents: 1234UL);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("12.34 USD", actual);
+  }
+
+  [TestMethod]
+  public void ToString_Euros_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.Euro(cents: 1234UL);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("12.34 EUR", actual);
+  }
+
+  [TestMethod]
+  public void ToString_BelarusianRoubles_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.BelarusianRouble(kopecks: 1234UL);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("12.34 BYN", actual);
+  }
+
+  [TestMethod]
+  public void ToString_RussianRoubles_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.RussianRouble(kopecks: 1234UL);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("12.34 RUB", actual);
   }
 }
