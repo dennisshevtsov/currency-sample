@@ -65,8 +65,8 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
 
   public static Money None { get; }
 
-  public static Money UnitedStatesDollar(ulong cents) => new(currency: Currency.UnitedStatesDollar, totalMinorUnits: cents);
-  public static Money               Euro(ulong cents) => new(currency: Currency.Euro              , totalMinorUnits: cents);
-  public static Money BelarusianRouble(ulong kopecks) => new(currency: Currency.BelarusianRouble  , totalMinorUnits: kopecks);
-  public static Money    RussianRouble(ulong kopecks) => new(currency: Currency.RussianRouble     , totalMinorUnits: kopecks);
+  public static Money USD(ulong cents  ) => new(currency: Currency.USD, totalMinorUnits: cents);
+  public static Money EUR(ulong cents  ) => new(currency: Currency.EUR, totalMinorUnits: cents);
+  public static Money BYN(ulong kopecks) => new(currency: Currency.RYN, totalMinorUnits: kopecks);
+  public static Money RUB(ulong kopecks) => new(currency: Currency.RUB, totalMinorUnits: kopecks);
 }
