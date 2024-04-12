@@ -549,4 +549,19 @@ public sealed class MoneyTest
     Money expected = Money.USD(cents: 1000UL + 2000UL);
     Assert.AreEqual(expected, actual);
   }
+
+  [TestMethod]
+  public void OperatorMultiply_Money_ProductReturned()
+  {
+    // Arrange
+    Money    money = Money.USD(cents: 1000UL);
+    decimal factor = 0.95M;
+
+    // Act
+    Money actual = money * factor;
+
+    // Assert
+    Money expected = Money.USD(cents: (ulong)(1000UL * 0.95M));
+    Assert.AreEqual(expected, actual);
+  }
 }

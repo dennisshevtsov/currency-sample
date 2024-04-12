@@ -67,10 +67,20 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
   {
     if (a.Currency != b.Currency)
     {
-      throw new InvalidOperationException("Same currency required to sum");
+      throw new InvalidOperationException("Same currency required to sum money");
     }
 
     return new Money(currency: a.Currency, totalMinorUnits: a.TotalMinorUnits + b.TotalMinorUnits);
+  }
+
+  public static Money operator *(Money a, decimal b)
+  {
+    if (b < 0M)
+    {
+      throw new InvalidOperationException("Positive number required to multiply money");
+    }
+
+    return new Money(currency: a.Currency, totalMinorUnits: (ulong)(a.TotalMinorUnits * b));
   }
 
   public static Money None { get; }
