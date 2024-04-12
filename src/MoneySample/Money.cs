@@ -63,6 +63,16 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
   public static bool operator ==(Money a, Money b) => a.CompareTo(b) == 0;
   public static bool operator !=(Money a, Money b) => a.CompareTo(b) != 0;
 
+  public static Money operator +(Money a, Money b)
+  {
+    if (a.Currency != b.Currency)
+    {
+      throw new InvalidOperationException("Same currency required to sum");
+    }
+
+    return new Money(currency: a.Currency, totalMinorUnits: a.TotalMinorUnits + b.TotalMinorUnits);
+  }
+
   public static Money None { get; }
 
   public static Money USD(ulong cents  ) => new(currency: Currency.USD, totalMinorUnits: cents);
