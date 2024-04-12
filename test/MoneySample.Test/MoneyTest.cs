@@ -520,4 +520,48 @@ public sealed class MoneyTest
     // Assert
     Assert.AreEqual("12.34 RUB", actual);
   }
+
+  [TestMethod]
+  public void OperatorPlus_DifferentCurrencies_ExceptionThrown()
+  {
+    // Arrange
+    Money money1 = Money.USD(cents: 1000UL);
+    Money money2 = Money.EUR(cents: 2000UL);
+
+    // Act
+    Func<object> action = () => money1 + money2;
+
+    // Assert
+    Assert.ThrowsException<InvalidOperationException>(action);
+  }
+
+  [TestMethod]
+  public void OperatorPlus_SameCurrencies_SumReturned()
+  {
+    // Arrange
+    Money money1 = Money.USD(cents: 1000UL);
+    Money money2 = Money.USD(cents: 2000UL);
+
+    // Act
+    Money actual = money1 + money2;
+
+    // Assert
+    Money expected = Money.USD(cents: 1000UL + 2000UL);
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void OperatorMultiply_Money_ProductReturned()
+  {
+    // Arrange
+    Money    money = Money.USD(cents: 1000UL);
+    decimal factor = 0.95M;
+
+    // Act
+    Money actual = money * factor;
+
+    // Assert
+    Money expected = Money.USD(cents: (ulong)(1000UL * 0.95M));
+    Assert.AreEqual(expected, actual);
+  }
 }
