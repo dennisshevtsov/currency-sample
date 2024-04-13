@@ -1,1 +1,1 @@
-# money-sample
+# money-type

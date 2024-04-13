@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MoneySample\MoneySample.csproj" />
+    <ProjectReference Include="..\..\src\MoneyType\MoneyType.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
-namespace MoneySample.Test;
+namespace MoneyType.Test;
 
 [TestClass]
 public sealed class MoneyTest
