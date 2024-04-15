@@ -9,6 +9,11 @@ namespace MoneyType.Sample;
 
 public sealed class MoneyTypeSampleDbContext : DbContext
 {
+  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+  {
+    optionsBuilder.UseNpgsql("Host=hangfire-sample-db;Port=5432;Database=money-type-sample-db;Username=dev;Password=dev");
+  }
+
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     EntityTypeBuilder<ProductEntity> entityTypeBuilder = modelBuilder.Entity<ProductEntity>();
