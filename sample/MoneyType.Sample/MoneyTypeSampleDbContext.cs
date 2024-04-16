@@ -11,7 +11,7 @@ public sealed class MoneyTypeSampleDbContext : DbContext
 {
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
-    optionsBuilder.UseNpgsql("Host=hangfire-sample-db;Port=5432;Database=money-type-sample-db;Username=dev;Password=dev");
+    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=money-type-sample-db;Username=dev;Password=dev");
   }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,6 +23,9 @@ public sealed class MoneyTypeSampleDbContext : DbContext
 
     entityTypeBuilder.Property(entity => entity.ProductId).IsRequired().HasColumnName("product_id");
     entityTypeBuilder.Property(entity => entity.Name     ).IsRequired().HasColumnName("name"      );
-    entityTypeBuilder.Property(entity => entity.Price    ).IsRequired().HasColumnName("price"     );
+
+    entityTypeBuilder.Ignore(entity => entity.Price);
+    entityTypeBuilder.Property(typeof(ulong) , "price_amount"  ).IsRequired().HasColumnName("price_amount"  );
+    entityTypeBuilder.Property(typeof(string), "price_currency").IsRequired().HasColumnName("price_currency");
   }
 }
