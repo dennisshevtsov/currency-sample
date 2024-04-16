@@ -83,8 +83,10 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
     return new Money(currency: a.Currency, totalMinorUnits: (ulong)(a.TotalMinorUnits * b));
   }
 
-  public static Money None { get; }
+  public static implicit operator ulong(Money money   ) => money.TotalMinorUnits;
+  public static implicit operator Currency(Money money) => money.Currency;
 
+  public static Money None { get; }
   public static Money USD(ulong cents  ) => new(currency: Currency.USD, totalMinorUnits: cents);
   public static Money EUR(ulong cents  ) => new(currency: Currency.EUR, totalMinorUnits: cents);
   public static Money BYN(ulong kopecks) => new(currency: Currency.RYN, totalMinorUnits: kopecks);
