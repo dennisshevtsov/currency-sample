@@ -3,7 +3,6 @@
 // See LICENSE in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 
 namespace MoneyType;
 
@@ -86,6 +85,23 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
 
   public static implicit operator ulong(Money money   ) => money.TotalMinorUnits;
   public static implicit operator Currency(Money money) => money.Currency;
+
+  public static Money Parce(string value)
+  {
+    int stringMoneyLength = 3 + 18 + 1 + 2;
+    if (value.Length != stringMoneyLength)
+    {
+      throw new InvalidCastException("Invalid length of string");
+    }
+
+    Currency currency = Currency.Parse(value.Substring(0, 3));
+
+    ulong majorUnits = ulong.Parse(value.Substring(3, 18));
+    ulong minorUnits = ulong.Parse(value.Substring(23, 2));
+    ulong totalMinorUnits = majorUnits * Money.MinorUnitRatio + minorUnits;
+
+    return new Money(currency: currency, totalMinorUnits: totalMinorUnits);
+  }
 
   public static Money None { get; }
   public static Money USD(ulong cents  ) => new(currency: Currency.USD, totalMinorUnits: cents);

@@ -3,7 +3,6 @@
 // See LICENSE in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Metadata;
 
 namespace MoneyType;
 
