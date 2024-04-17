@@ -3,6 +3,7 @@
 // See LICENSE in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection.Metadata;
 
 namespace MoneyType;
 
@@ -29,6 +30,23 @@ public readonly struct Currency : IEquatable<Currency>
 
   public static bool operator ==(Currency a, Currency b) => a.Equals(b);
   public static bool operator !=(Currency a, Currency b) => !a.Equals(b);
+
+  public static Currency Parse(string value)
+  {
+    ArgumentNullException.ThrowIfNullOrEmpty(value);
+
+    if (value.Length != 3)
+    {
+      throw new InvalidCastException($"Invalid length {value.Length} of string to convert to Currency");
+    }
+
+    if (value == Currency.USD.Code) return Currency.USD;
+    if (value == Currency.EUR.Code) return Currency.EUR;
+    if (value == Currency.RYN.Code) return Currency.RYN;
+    if (value == Currency.RUB.Code) return Currency.RUB;
+
+    throw new InvalidCastException($"Invalid value {value} to convert to Currency");
+  }
 
   public static readonly Currency None;
   public static readonly Currency USD = new(code: "USD");
