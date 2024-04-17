@@ -3,6 +3,7 @@
 // See LICENSE in the project root for license information.
 
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace MoneyType;
 
@@ -14,11 +15,11 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
 
   private Currency Currency { get; }
   private ulong TotalMinorUnits { get; }
-
+ 
   private ulong MajorUnits => TotalMinorUnits / Money.MinorUnitRatio;
   private ulong MinorUnits => TotalMinorUnits % Money.MinorUnitRatio;
 
-  public override string ToString() => $"{MajorUnits}.{MinorUnits} {Currency}";
+  public override string ToString() => $"{Currency}{MajorUnits:D18}.{MinorUnits}";
 
   public override bool Equals([NotNullWhen(true)] object? obj)
   {
