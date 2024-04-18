@@ -8,6 +8,7 @@ namespace MoneyType;
 
 public readonly struct Money : IComparable<Money>, IEquatable<Money>
 {
+  private const int StringValueLength = 3 + 20 + 1; // 3 (code length) + 20 (max ulong digits) + 1 (point)
   private const ulong MinorUnitRatio = 100UL;
 
   private Money(Currency currency, ulong totalMinorUnits) => (Currency, TotalMinorUnits) = (currency, totalMinorUnits);
@@ -88,16 +89,17 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
 
   public static Money Parce(string value)
   {
-    int stringMoneyLength = 3 + 18 + 1 + 2;
-    if (value.Length != stringMoneyLength)
+    ArgumentNullException.ThrowIfNullOrEmpty(value);
+
+    if (value.Length != Money.StringValueLength)
     {
-      throw new InvalidCastException("Invalid length of string");
+      throw new InvalidCastException($"Invalid length {value.Length} of string to convert to Money");
     }
 
-    Currency currency = Currency.Parse(value.Substring(0, 3));
+    Currency currency = Currency.Parse(value[..3]);
 
-    ulong majorUnits = ulong.Parse(value.Substring(3, 18));
-    ulong minorUnits = ulong.Parse(value.Substring(23, 2));
+    ulong majorUnits = ulong.Parse(value.Substring(3, 18)); // 20 (all ulong digits) - 2 (digits after point) = 18
+    ulong minorUnits = ulong.Parse(value.Substring(22, 2)); // 3 (code length) + 18 (digits before point) + 1 (point) = 22
     ulong totalMinorUnits = majorUnits * Money.MinorUnitRatio + minorUnits;
 
     return new Money(currency: currency, totalMinorUnits: totalMinorUnits);
