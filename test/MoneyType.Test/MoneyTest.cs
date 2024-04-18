@@ -522,6 +522,19 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
+  public void ToString_MaxValue_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.USD(cents: ulong.MaxValue);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("USD184467440737095516.15", actual);
+  }
+
+  [TestMethod]
   public void OperatorPlus_DifferentCurrencies_ExceptionThrown()
   {
     // Arrange

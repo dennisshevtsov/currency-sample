@@ -24,8 +24,9 @@ public sealed class MoneyTypeSampleDbContext : DbContext
     entityTypeBuilder.Property(entity => entity.ProductId).IsRequired().HasColumnName("product_id");
     entityTypeBuilder.Property(entity => entity.Name     ).IsRequired().HasColumnName("name"      );
 
-    entityTypeBuilder.Ignore(entity => entity.Price);
-    entityTypeBuilder.Property(typeof(ulong) , "price_amount"  ).IsRequired().HasColumnName("price_amount"  );
-    entityTypeBuilder.Property(typeof(string), "price_currency").IsRequired().HasColumnName("price_currency");
+    entityTypeBuilder.Property(entity => entity.Price)
+                     .IsRequired()
+                     .HasColumnName("price")
+                     .HasConversion(price => price.ToString(), price => Money.Parce(price));
   }
 }
