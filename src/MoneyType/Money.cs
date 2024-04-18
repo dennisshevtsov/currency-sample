@@ -108,6 +108,6 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
   public static Money None { get; }
   public static Money USD(ulong cents  ) => new(currency: Currency.USD, totalMinorUnits: cents);
   public static Money EUR(ulong cents  ) => new(currency: Currency.EUR, totalMinorUnits: cents);
-  public static Money BYN(ulong kopecks) => new(currency: Currency.RYN, totalMinorUnits: kopecks);
+  public static Money BYN(ulong kopecks) => new(currency: Currency.BYN, totalMinorUnits: kopecks);
   public static Money RUB(ulong kopecks) => new(currency: Currency.RUB, totalMinorUnits: kopecks);
 }

@@ -43,7 +43,7 @@ public readonly struct Currency : IEquatable<Currency>
 
     if (value == Currency.USD.Code) return Currency.USD;
     if (value == Currency.EUR.Code) return Currency.EUR;
-    if (value == Currency.RYN.Code) return Currency.RYN;
+    if (value == Currency.BYN.Code) return Currency.BYN;
     if (value == Currency.RUB.Code) return Currency.RUB;
 
     throw new InvalidCastException($"Invalid value {value} to convert to Currency");
@@ -52,6 +52,6 @@ public readonly struct Currency : IEquatable<Currency>
   public static readonly Currency None;
   public static readonly Currency USD = new(code: "USD");
   public static readonly Currency EUR = new(code: "EUR");
-  public static readonly Currency RYN = new(code: "BYN");
+  public static readonly Currency BYN = new(code: "BYN");
   public static readonly Currency RUB = new(code: "RUB");
 }
