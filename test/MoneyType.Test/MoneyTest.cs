@@ -535,6 +535,19 @@ public sealed class MoneyTest
   }
 
   [TestMethod]
+  public void ToString_OneDigitAfterPoint_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.USD(cents: 1203UL);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("USD000000000000000012.03", actual);
+  }
+
+  [TestMethod]
   public void OperatorPlus_DifferentCurrencies_ExceptionThrown()
   {
     // Arrange
@@ -683,6 +696,20 @@ public sealed class MoneyTest
 
     // Assert
     Money expected = Money.RUB(kopecks: 1234UL);
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void Parce_OneDigitAfterPoint_CorrectValueReturnedReturned()
+  {
+    // Arrange
+    string value = "RUB000000000000000012.03";
+
+    // Act
+    Money actual = Money.Parce(value);
+
+    // Assert
+    Money expected = Money.RUB(kopecks: 1203UL);
     Assert.AreEqual(expected, actual);
   }
 }

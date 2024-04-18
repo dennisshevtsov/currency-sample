@@ -19,7 +19,7 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
   private ulong MajorUnits => TotalMinorUnits / Money.MinorUnitRatio;
   private ulong MinorUnits => TotalMinorUnits % Money.MinorUnitRatio;
 
-  public override string ToString() => $"{Currency}{MajorUnits:D18}.{MinorUnits}";
+  public override string ToString() => $"{Currency}{MajorUnits:D18}.{MinorUnits:D2}";
 
   public override bool Equals([NotNullWhen(true)] object? obj)
   {
@@ -93,7 +93,7 @@ public readonly struct Money : IComparable<Money>, IEquatable<Money>
 
     if (value.Length != Money.StringValueLength)
     {
-      throw new InvalidCastException($"Invalid length {value.Length} of string to convert to Money");
+      throw new InvalidCastException($"Invalid length {value.Length} of string '{value}' to convert to Money");
     }
 
     Currency currency = Currency.Parse(value[..3]);
