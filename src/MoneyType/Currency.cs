@@ -8,6 +8,8 @@ namespace MoneyType;
 
 public readonly struct Currency : IEquatable<Currency>
 {
+  private const int CodeLength = 3;
+
   private Currency(string code) => Code = code;
   private string Code { get; }
 
@@ -34,7 +36,7 @@ public readonly struct Currency : IEquatable<Currency>
   {
     ArgumentNullException.ThrowIfNullOrEmpty(value);
 
-    if (value.Length != 3)
+    if (value.Length != Currency.CodeLength)
     {
       throw new InvalidCastException($"Invalid length {value.Length} of string to convert to Currency");
     }
