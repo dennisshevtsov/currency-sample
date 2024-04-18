@@ -479,7 +479,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 USD", actual);
+    Assert.AreEqual("USD000000000000000012.34", actual);
   }
 
   [TestMethod]
@@ -492,7 +492,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 EUR", actual);
+    Assert.AreEqual("EUR000000000000000012.34", actual);
   }
 
   [TestMethod]
@@ -505,7 +505,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 BYN", actual);
+    Assert.AreEqual("BYN000000000000000012.34", actual);
   }
 
   [TestMethod]
@@ -518,7 +518,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 RUB", actual);
+    Assert.AreEqual("RUB000000000000000012.34", actual);
   }
 
   [TestMethod]
