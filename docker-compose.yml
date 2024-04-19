@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  money-type-sample-db:
+    container_name: money-type-sample-db
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=money-type-sample-db

@@ -54,7 +54,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency dollar = Currency.USD;
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
 
     // Act
     bool result = dollar.Equals(rouble);
@@ -110,7 +110,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency   euro = Currency.EUR;
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
 
     // Act
     bool result = euro.Equals(rouble);
@@ -137,7 +137,7 @@ public sealed class CurrencyTest
   public void Equals_BelarusianRoubleAndUnitedStatesDollar_FalseReturned()
   {
     // Arrange
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
     Currency dollar = Currency.USD;
 
     // Act
@@ -151,7 +151,7 @@ public sealed class CurrencyTest
   public void Equals_BelarusianRoubleAndUnitedStatesEuro_FalseReturned()
   {
     // Arrange
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
     Currency   euro = Currency.EUR;
 
     // Act
@@ -165,8 +165,8 @@ public sealed class CurrencyTest
   public void Equals_BelarusianRoubleAndBelarusianRouble_TrueReturned()
   {
     // Arrange
-    Currency rouble1 = Currency.RYN;
-    Currency rouble2 = Currency.RYN;
+    Currency rouble1 = Currency.BYN;
+    Currency rouble2 = Currency.BYN;
 
     // Act
     bool result = rouble1.Equals(rouble2);
@@ -179,7 +179,7 @@ public sealed class CurrencyTest
   public void Equals_BelarusianRoubleAndRussianRouble_FalseReturned()
   {
     // Arrange
-    Currency belarusianRouble = Currency.RYN;
+    Currency belarusianRouble = Currency.BYN;
     Currency   roussianRouble = Currency.RUB;
 
     // Act
@@ -222,7 +222,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency belarusianRouble = Currency.RUB;
-    Currency    russianRouble = Currency.RYN;
+    Currency    russianRouble = Currency.BYN;
 
     // Act
     bool result = belarusianRouble.Equals(russianRouble);
@@ -278,7 +278,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency dollar = Currency.USD;
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
 
     // Act
     bool result = dollar == rouble;
@@ -334,7 +334,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency   euro = Currency.EUR;
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
 
     // Act
     bool result = euro == rouble;
@@ -361,7 +361,7 @@ public sealed class CurrencyTest
   public void EqualOperator_BelarusianRoubleAndUnitedStatesDollar_FalseReturned()
   {
     // Arrange
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
     Currency dollar = Currency.USD;
 
     // Act
@@ -375,7 +375,7 @@ public sealed class CurrencyTest
   public void EqualOperator_BelarusianRoubleAndUnitedStatesEuro_FalseReturned()
   {
     // Arrange
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
     Currency   euro = Currency.EUR;
 
     // Act
@@ -389,8 +389,8 @@ public sealed class CurrencyTest
   public void EqualOperator_BelarusianRoubleAndBelarusianRouble_TrueReturned()
   {
     // Arrange
-    Currency rouble1 = Currency.RYN;
-    Currency rouble2 = Currency.RYN;
+    Currency rouble1 = Currency.BYN;
+    Currency rouble2 = Currency.BYN;
 
     // Act
     bool result = rouble1 == rouble2;
@@ -403,7 +403,7 @@ public sealed class CurrencyTest
   public void EqualOperator_BelarusianRoubleAndRussianRouble_FalseReturned()
   {
     // Arrange
-    Currency belarusianRouble = Currency.RYN;
+    Currency belarusianRouble = Currency.BYN;
     Currency   roussianRouble = Currency.RUB;
 
     // Act
@@ -446,7 +446,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency belarusianRouble = Currency.RUB;
-    Currency    russianRouble = Currency.RYN;
+    Currency    russianRouble = Currency.BYN;
 
     // Act
     bool result = belarusianRouble == russianRouble;
@@ -502,7 +502,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency dollar = Currency.USD;
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
 
     // Act
     bool result = dollar != rouble;
@@ -558,7 +558,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency   euro = Currency.EUR;
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
 
     // Act
     bool result = euro != rouble;
@@ -585,7 +585,7 @@ public sealed class CurrencyTest
   public void NotEqualOperator_BelarusianRoubleAndUnitedStatesDollar_TrueReturned()
   {
     // Arrange
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
     Currency dollar = Currency.USD;
 
     // Act
@@ -599,7 +599,7 @@ public sealed class CurrencyTest
   public void NotEqualOperator_BelarusianRoubleAndUnitedStatesEuro_TrueReturned()
   {
     // Arrange
-    Currency rouble = Currency.RYN;
+    Currency rouble = Currency.BYN;
     Currency   euro = Currency.EUR;
 
     // Act
@@ -613,8 +613,8 @@ public sealed class CurrencyTest
   public void NotEqualOperator_BelarusianRoubleAndBelarusianRouble_FalseReturned()
   {
     // Arrange
-    Currency rouble1 = Currency.RYN;
-    Currency rouble2 = Currency.RYN;
+    Currency rouble1 = Currency.BYN;
+    Currency rouble2 = Currency.BYN;
 
     // Act
     bool result = rouble1 != rouble2;
@@ -627,7 +627,7 @@ public sealed class CurrencyTest
   public void NotEqualOperator_BelarusianRoubleAndRussianRouble_TrueReturned()
   {
     // Arrange
-    Currency belarusianRouble = Currency.RYN;
+    Currency belarusianRouble = Currency.BYN;
     Currency   roussianRouble = Currency.RUB;
 
     // Act
@@ -670,7 +670,7 @@ public sealed class CurrencyTest
   {
     // Arrange
     Currency belarusianRouble = Currency.RUB;
-    Currency    russianRouble = Currency.RYN;
+    Currency    russianRouble = Currency.BYN;
 
     // Act
     bool result = belarusianRouble != russianRouble;
@@ -691,5 +691,122 @@ public sealed class CurrencyTest
 
     // Assert
     Assert.IsFalse(result);
+  }
+
+  [TestMethod]
+  public void Parce_4LettersCode_ExceptionThrownd()
+  {
+    // Arrange
+    string code = "AAAA";
+
+    // Act
+    Func<object> act = () => Currency.Parse(code);
+
+    // Assert
+    Assert.ThrowsException<InvalidCastException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_2LettersCode_ExceptionThrownd()
+  {
+    // Arrange
+    string code = "AA";
+
+    // Act
+    Func<object> act = () => Currency.Parse(code);
+
+    // Assert
+    Assert.ThrowsException<InvalidCastException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_EmptyCode_ExceptionThrownd()
+  {
+    // Arrange
+    string code = "";
+
+    // Act
+    Func<object> act = () => Currency.Parse(code);
+
+    // Assert
+    Assert.ThrowsException<ArgumentException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_NullCode_ExceptionThrownd()
+  {
+    // Arrange
+    string code = null!;
+
+    // Act
+    Func<object> act = () => Currency.Parse(code);
+
+    // Assert
+    Assert.ThrowsException<ArgumentNullException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_UnknownCode_ExceptionThrownd()
+  {
+    // Arrange
+    string code = "AAA";
+
+    // Act
+    Func<object> act = () => Currency.Parse(code);
+
+    // Assert
+    Assert.ThrowsException<InvalidCastException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_USDCode_USDReturned()
+  {
+    // Arrange
+    string code = "USD";
+
+    // Act
+    Currency currency = Currency.Parse(code);
+
+    // Assert
+    Assert.AreEqual(Currency.USD, currency);
+  }
+
+  [TestMethod]
+  public void Parce_EURCode_EURReturned()
+  {
+    // Arrange
+    string code = "EUR";
+
+    // Act
+    Currency currency = Currency.Parse(code);
+
+    // Assert
+    Assert.AreEqual(Currency.EUR, currency);
+  }
+
+  [TestMethod]
+  public void Parce_BYNCode_BYNReturned()
+  {
+    // Arrange
+    string code = "BYN";
+
+    // Act
+    Currency currency = Currency.Parse(code);
+
+    // Assert
+    Assert.AreEqual(Currency.BYN, currency);
+  }
+
+  [TestMethod]
+  public void Parce_RUBCode_RUBReturned()
+  {
+    // Arrange
+    string code = "RUB";
+
+    // Act
+    Currency currency = Currency.Parse(code);
+
+    // Assert
+    Assert.AreEqual(Currency.RUB, currency);
   }
 }

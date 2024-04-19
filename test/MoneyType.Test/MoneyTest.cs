@@ -479,7 +479,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 USD", actual);
+    Assert.AreEqual("USD000000000000000012.34", actual);
   }
 
   [TestMethod]
@@ -492,7 +492,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 EUR", actual);
+    Assert.AreEqual("EUR000000000000000012.34", actual);
   }
 
   [TestMethod]
@@ -505,7 +505,7 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 BYN", actual);
+    Assert.AreEqual("BYN000000000000000012.34", actual);
   }
 
   [TestMethod]
@@ -518,7 +518,33 @@ public sealed class MoneyTest
     string actual = money.ToString();
 
     // Assert
-    Assert.AreEqual("12.34 RUB", actual);
+    Assert.AreEqual("RUB000000000000000012.34", actual);
+  }
+
+  [TestMethod]
+  public void ToString_MaxValue_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.USD(cents: ulong.MaxValue);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("USD184467440737095516.15", actual);
+  }
+
+  [TestMethod]
+  public void ToString_OneDigitAfterPoint_CorrectStringReturned()
+  {
+    // Arrange
+    Money money = Money.USD(cents: 1203UL);
+
+    // Act
+    string actual = money.ToString();
+
+    // Assert
+    Assert.AreEqual("USD000000000000000012.03", actual);
   }
 
   [TestMethod]
@@ -562,6 +588,128 @@ public sealed class MoneyTest
 
     // Assert
     Money expected = Money.USD(cents: (ulong)(1000UL * 0.95M));
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void Parce_TooLongString_ExceptionThrown()
+  {
+    // Arrange
+    string value = "0000000000000000000000000";
+
+    // Act
+    Func<object> act = () => Money.Parce(value);
+
+    // Assert
+    Assert.ThrowsException<InvalidCastException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_TooShortString_ExceptionThrown()
+  {
+    // Arrange
+    string value = "00000000000000000000000";
+
+    // Act
+    Func<object> act = () => Money.Parce(value);
+
+    // Assert
+    Assert.ThrowsException<InvalidCastException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_EmptyString_ExceptionThrown()
+  {
+    // Arrange
+    string value = "";
+
+    // Act
+    Func<object> act = () => Money.Parce(value);
+
+    // Assert
+    Assert.ThrowsException<ArgumentException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_NullString_ExceptionThrown()
+  {
+    // Arrange
+    string value = null!;
+
+    // Act
+    Func<object> act = () => Money.Parce(value);
+
+    // Assert
+    Assert.ThrowsException<ArgumentNullException>(act);
+  }
+
+  [TestMethod]
+  public void Parce_USDString_USDReturned()
+  {
+    // Arrange
+    string value = "USD000000000000000012.34";
+
+    // Act
+    Money actual = Money.Parce(value);
+
+    // Assert
+    Money expected = Money.USD(cents: 1234UL);
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void Parce_EURString_EURReturned()
+  {
+    // Arrange
+    string value = "EUR000000000000000012.34";
+
+    // Act
+    Money actual = Money.Parce(value);
+
+    // Assert
+    Money expected = Money.EUR(cents: 1234UL);
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void Parce_BYNString_BYNReturned()
+  {
+    // Arrange
+    string value = "BYN000000000000000012.34";
+
+    // Act
+    Money actual = Money.Parce(value);
+
+    // Assert
+    Money expected = Money.BYN(kopecks: 1234UL);
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void Parce_RUBString_RUBReturned()
+  {
+    // Arrange
+    string value = "RUB000000000000000012.34";
+
+    // Act
+    Money actual = Money.Parce(value);
+
+    // Assert
+    Money expected = Money.RUB(kopecks: 1234UL);
+    Assert.AreEqual(expected, actual);
+  }
+
+  [TestMethod]
+  public void Parce_OneDigitAfterPoint_CorrectValueReturnedReturned()
+  {
+    // Arrange
+    string value = "RUB000000000000000012.03";
+
+    // Act
+    Money actual = Money.Parce(value);
+
+    // Assert
+    Money expected = Money.RUB(kopecks: 1203UL);
     Assert.AreEqual(expected, actual);
   }
 }
