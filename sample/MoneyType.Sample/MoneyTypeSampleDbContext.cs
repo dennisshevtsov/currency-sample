@@ -12,7 +12,6 @@ public sealed class MoneyTypeSampleDbContext : DbContext
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
     optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=money-type-sample-db;Username=dev;Password=dev");
-    optionsBuilder.LogTo(Console.WriteLine);
   }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
